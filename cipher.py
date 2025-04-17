@@ -14,8 +14,6 @@ Students. Academic penalties up to and including an F in the course are likely.
 UT EID 1: fl7449
 """
 
-
-# TODO: implement this function. You may delete this comment after you are done.
 def rail_fence_encode(string, key):
     """
     pre: string is a string of characters and key is a positive
@@ -26,7 +24,7 @@ def rail_fence_encode(string, key):
     """
     rails = [''] * key
     row = 0
-    direction = 1  # 1 for down, -1 for up
+    direction = 1
     for ch in string:
         rails[row] += ch
         row += direction
@@ -35,7 +33,6 @@ def rail_fence_encode(string, key):
     return ''.join(rails)
 
 
-# TODO: implement this function. You may delete this comment after you are done.
 def rail_fence_decode(string, key):
     """
     pre: string is a string of characters and key is a positive
@@ -45,7 +42,6 @@ def rail_fence_decode(string, key):
         rail fence algorithm
     """
     n = len(string)
-    # mark positions
     mark = [[False] * n for _ in range(key)]
     row = 0
     direction = 1
@@ -54,7 +50,6 @@ def rail_fence_decode(string, key):
         row += direction
         if row == 0 or row == key - 1:
             direction *= -1
-    # fill characters row-wise
     decoded = [[None] * n for _ in range(key)]
     idx = 0
     for r in range(key):
@@ -62,7 +57,6 @@ def rail_fence_decode(string, key):
             if mark[r][c]:
                 decoded[r][c] = string[idx]
                 idx += 1
-    # read zigzag
     result = []
     row = 0
     direction = 1
@@ -73,7 +67,6 @@ def rail_fence_decode(string, key):
             direction *= -1
     return ''.join(result)
 
-# TODO: implement this function. You may delete this comment after you are done.
 def filter_string(string):
     """
     pre: string is a string of characters
@@ -85,7 +78,6 @@ def filter_string(string):
     return ''.join(ch for ch in s if 'a' <= ch <= 'z')
 
 
-# TODO: implement this function. You may delete this comment after you are done.
 def encode_character(p, s):
     """
     pre: p is a character in the pass phrase and s is a character
@@ -96,7 +88,6 @@ def encode_character(p, s):
     return chr((ord(s) - ord('a') + ord(p) - ord('a')) % 26 + ord('a'))
 
 
-# TODO: implement this function. You may delete this comment after you are done.
 def decode_character(p, s):
     """
     pre: p is a character in the pass phrase and s is a character
@@ -106,7 +97,6 @@ def decode_character(p, s):
     """
     return chr((ord(s) - ord('a') - (ord(p) - ord('a')) + 26) % 26 + ord('a'))
 
-# TODO: implement this function. You may delete this comment after you are done.
 def vigenere_encode(string, phrase):
     """
     pre: string is a string of characters and phrase is a pass phrase
@@ -118,9 +108,7 @@ def vigenere_encode(string, phrase):
     m = len(filtered)
     if m == 0:
         return ''
-    # repeat/pass phrase
     plen = len(phrase)
-    # lower-case phrase
     phrase_l = phrase.lower()
     j = 0
     for i in range(m):
@@ -129,8 +117,6 @@ def vigenere_encode(string, phrase):
         j += 1
     return ''.join(result)
 
-
-# TODO: implement this function. You may delete this comment after you are done.
 def vigenere_decode(string, phrase):
     """
     pre: string is a string of characters and phrase is a pass phrase
@@ -152,7 +138,6 @@ def vigenere_decode(string, phrase):
     return ''.join(result)
 
 
-# TODO: implement this function. You may delete this comment after you are done.
 def main():
     """Main function that reads stdin and runs each cipher"""
     print("Rail Fence Cipher")
@@ -172,7 +157,6 @@ def main():
     print(f"Decoded Text: {decoded_rf}")
     print()
 
-    # Vigenere Cipher
     print("Vigenere Cipher")
     print()
     plain_vig = input()
@@ -189,7 +173,5 @@ def main():
     print(f"Pass Phrase: {phrase_vig2}")
     print(f"Decoded Text: {decoded_vig}")
 
-
-# Do NOT modify the following code.
 if __name__ == "__main__":
     main()
